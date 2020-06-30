@@ -1,26 +1,57 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
 import './App.css';
+import Tabletop from 'tabletop';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component {
+  constructor() {
+    super()
+    this.state = {
+      data: []
+    }
+  }
+
+  componentDidMount() {
+    Tabletop.init({
+      key: '1zI6K8q7_lzUCHlnDeDHtl5OUXwK-M2JWOXaC0hG2fRI',
+      callback: googleData => {
+        this.setState({
+          data: googleData
+        })
+      },
+      simpleSheet: true
+    })
+  }
+
+  render() {
+    const { data } = this.state
+    return (
+      <div className="App">
+       
+          <h1 className="App-title">React + Google Sheets Demo</h1>
+      
+        <div id="employee-details">
+          {
+            data.map(obj => {
+              return (
+                <div>
+                  <div>
+                    <table>
+                      <tr>
+                        <th>{obj.first}</th>
+                        <th>{obj.last}</th>
+                        <th>{obj.date}</th>
+                        <th>{obj.service}</th>
+                      </tr>
+                    </table>
+                  </div>                
+                </div>
+              )
+            })
+          }
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
