@@ -37,10 +37,16 @@ class App extends Component {
                   <div>
                     <table>
                       <tr>
-                        <th>{obj.first}</th>
-                        <th>{obj.last}</th>
-                        <th>{obj.date}</th>
-                        <th>{obj.service}</th>
+                        <th>First</th>
+                        <th>Last</th>
+                        <th>Date of Service</th>
+                        <th>Service Provided</th>
+                      </tr>
+                      <tr>
+                        <td>{obj.first}</td>
+                        <td>{obj.last}</td>
+                        <td>{obj.date}</td>
+                        <td>{obj.service}</td>
                       </tr>
                     </table>
                   </div>                
